@@ -1,0 +1,24 @@
+{
+  "setupTasks": [
+    {
+      "command": "npm run install-all",
+      "name": "Installing Dependencies"
+    }
+  ],
+  "tasks": {
+    "install-all": {
+      "name": "install-all",
+      "command": "pnpm install-all"
+    },
+    "server": {
+      "name": "Start Server",
+      "command": "npm --prefix server run dev",
+      "runAtStart": true
+    },
+    "client": {
+      "name": "Start Client",
+      "command": "sleep 5 && npm --prefix client run dev",
+      "runAtStart": true
+    }
+  }
+}
