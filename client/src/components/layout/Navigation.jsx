@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Layout.css";
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth(); // Pull the logged-in user from context
+  const { user, logout } = useAuth(); // Pull the logged-in user and logout function from context
+  const navigate = useNavigate();
 
   const role = user?.role || "user"; // default fallback
 
@@ -40,6 +41,16 @@ const Navigation = () => {
               {link.label}
             </Link>
           ))}
+          <button
+            className="logout-btn"
+            onClick={() => {
+              logout();
+              navigate('/login');
+              setOpen(false);
+            }}
+          >
+            🚪 Logout
+          </button>
         </nav>
       </div>
     </>
